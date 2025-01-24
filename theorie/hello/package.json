@@ -1,0 +1,19 @@
+{
+  "name": "hello",
+  "version": "1.0.0",
+  "description": "Leren node ts ",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mulinski",
+    "nodejs",
+    "typescript"
+  ],
+  "author": "Piotr Mulinski",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.10.10"
+  }
+}
