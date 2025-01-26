@@ -1,3 +1,2 @@
-console.log("Hello World");
+import * as rl from "readline-sync";
 
-export {}
