@@ -23,6 +23,12 @@ let atLeastTwo = (array:number[],callback:TestFunction): boolean => {
 }
 
 
+import { lookup } from 'dns/promises';
+
+lookup('goosgle.com')
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error));
+
 
 console.log(atLeastTwo([2,3,4,6,8], isOdd));
 console.log(atLeastTwo([2,3,4,5,6,8], isOdd));
