@@ -5,6 +5,7 @@ import { register } from "module";
 import { PipelineSource } from "stream";
 
 const app = express();
+app.use(express.static("public"));
 app.set("port",3000);
 
 interface Person {
@@ -19,7 +20,6 @@ const thisIsme : Person = {
   profilePic: "/assets/ikke.png"
 };
 
-app.use(express.static("public"));
 
 
 
@@ -56,6 +56,7 @@ app.get("/whoami", (req,res) => {
   }
 
 let pikachu : RootObject;
+
 
   app.get("/pikachujson" , (req,res) => {
     res.type("application/json");
