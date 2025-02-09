@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title><%= title %></title>
+</head>
+<body>
+
+<h1>Hellow Users</h1>
+
+<%= message %>
+<% if (age > 50) { %>
+    <p>Je bent oud</p>
+<% } else { %>
+    <p>Je bent jong</p>
+<% } %>
+
+<% for (let i = 1; i < 10; i++) { %>
+    <p><%= i %></p>
+<% } %>
+
+<ul>
+    <% for (let i = 0; i < users.length; i++ ) { %>
+        <li><%= users[i]%></li>
+   <% } %>
+</ul>
+
+
+
+
+
+</body>
+</html>
+
+
