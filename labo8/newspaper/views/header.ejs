@@ -1,0 +1,13 @@
+<header>
+
+    <nav>
+        <ul>
+            <li><a href="http://localhost:3000">home</a></li>
+           <% for (let i = 0; i < topics.length; i++) { %>
+            <li><a href="http://localhost:3000/<%= topics[i] %>"><%= topics[i] %></a></li>
+           <%}%>
+        </ul>
+    </nav>
+
+
+</header>
