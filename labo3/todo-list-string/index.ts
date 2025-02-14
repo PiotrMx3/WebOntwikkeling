@@ -33,8 +33,6 @@ while (isRunning) {
                 if(!completedTasks.includes(todoTasks[finishTask])){
                     completedTasks.push(todoTasks[finishTask]);
                     todoTasks.splice(finishTask , 1);
-                    // todoTasks[finishTask] = ""
-                    // todoTasks = todoTasks.filter(e => e !== "");
                 }
 
             break;

@@ -214,6 +214,14 @@ app.get("/technology" , (req,res) => {
 });
 
 
+app.get("/headers",(req,res)=>{
+    // let userAgent = req.headers["user-agent"];
+    let userAgent = req.ip;
+
+    res.type("text/html")
+    res.send(`Your browser is ${userAgent}`);
+})
+
 
 app.use((req,res) => {
     res.status(404);
