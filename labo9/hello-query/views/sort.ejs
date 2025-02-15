@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>To ja </title>
+</head>
+<body>
+
+<form action="/sort" method="get">
+    <select name="sortField">
+        <% for (const el of sort) { %>
+          <option value="<%= el.value %>" <%= el.selected %> ><%= el.text %></option>  
+       <%}%>
+    </select>
+
+    
+    <select name="sortDirection">
+        <% for (const el of direction) { %>
+        <option value="<%= el.value %>" <%= el.selected %>><%= el.text %></option>    
+        <%}%>
+    </select>    
+
+
+    <button type="submit">Sort</button>
+</form>
+    
+    <% for (let person of persons) { %>
+        <p><%= person.name %> (<%= person.age %>)</p>
+    <% } %>
+
+</body>
+</html>
