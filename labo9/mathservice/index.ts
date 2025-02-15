@@ -2,6 +2,8 @@ import express, { Express } from "express";
 import dotenv from "dotenv";
 import path from "path";
 import { read } from "fs";
+import { type } from "os";
+import { error } from "console";
 
 dotenv.config();
 
@@ -15,74 +17,64 @@ app.set("views", path.join(__dirname, "views"));
 
 app.set("port", process.env.PORT ?? 3000);
 
-app.get("/:operator", (req, res) => {
-    const data = req.params.operator;
 
-    console.log(req.query.b);
+function perfmedOperator(operator : string, a : number , b : number) {
 
-    if(req.query.a === undefined || req.query.b === undefined || req.query.a === "" || req.query.b === "") {
-        return res.json(
-            {
-                error: "Both query parameters (a,b) have to be specified."
+    if(!["add","min","mult","div"].includes(operator)) throw new Error("Unknown operator.");
+
+    if (isNaN(a) || isNaN(b)) throw new Error("Both query parameters (a,b) have to be of type number.");
+
+
+    switch (operator) {
+        case "add":
+            return a + b
+
+        case "min":
+            return a - b
+
+        case "mult":
+            return a * b   
+
+        case "div":
+            if(b === 0) {
+                throw new Error("Division by 0 is not allowed."); 
+            } 
+            else {
+                return a / b;
             }
-        );
-    };
-
-
-    let numA : number = NaN;
-    let numB : number = NaN;
-
-    if(typeof req.query.a === "string" && typeof req.query.b === "string") {
-        numA = parseInt(req.query.a);
-        numB = parseInt(req.query.b);
-    }
-
-    if(isNaN(numA) || isNaN(numB)){
-        return  res.json({
-            error: "Both query parameters (a,b) have to be of type number."
-        });
+                
+        default:
+            throw new Error("Unknown operator."); 
     }
     
-    if(data === "add") {
-        res.json({
-            result: numA + numB
+};
+
+
+app.get("/:operator", (req, res) => {
+
+    const operator : string = req.params.operator;
+
+    if (req.query.a == null || req.query.b == null) { 
+        return res.json({
+            error: "Both query parameters (a,b) have to be specified."
         });
     }
-    else if (data === "min") {
-        res.json({
-            result: numA - numB
-        });
-    }
-    else if (data === "mult") {
-        res.json({
-            result: numA * numB
-        });
-    }
-    else if (data === "div") {
-        if(numB === 0){
-            return res.json({
-               error: "Division by 0 is not allowed."
+        
+        const a : number = Number(req.query.a);
+        const b : number = typeof req.query.b === "string" ? parseFloat(req.query.b) : NaN;
+
+        try {
+          
+         const result = perfmedOperator(operator, a, b)   
+         res.json({
+            result
+         })   
+        } catch (error: any) {
+            res.json({
+                error : `Error ${error.message}`
             });
         }
-        res.json({
-            result: numA / numB
-        });
-    } else {
-        res.json({
-            error: "Unknown operator."
-        });
-    }
 
-
-        // res.type("text/html");
-        // res.send(`${!isNaN(numA)} ${!isNaN(numB)}`);
-
-        
-
-    // res.render("index", {
-    //     title: "Hello World",
-    //     message: "Hello World"
-    // })
 });
 
 app.listen(app.get("port"), () => {
