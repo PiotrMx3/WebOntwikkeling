@@ -18,7 +18,7 @@ while (isRunning) {
             break;
 
             case 1:
-            const allTasks : string[] = [...todoTasks,...completedTasks];
+            const allTasks : string[] = [...todoTasks, ...completedTasks];
 
             for (let i = 0; i < allTasks.length; i++) {
                 if(completedTasks.includes(allTasks[i])) {

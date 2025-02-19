@@ -1,6 +1,7 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
 import path from "path";
+import { register } from "module";
 
 dotenv.config();
 
@@ -128,18 +129,47 @@ app.get("/" , (req,res) => {
         articles
     });
 
-})
+});
 
-app.get("/politics" , (req,res) => {
+app.get("/search" , (req ,res) => {
+
+    const q = typeof req.query.q === "string" ? req.query.q : "";
+
+   
+
+    
+    if(q !== "" && isNaN(Number(q))) {   
+        
+        const articlesByTitel: NewsArticle[]  = articles.filter((el) => el.title.toLowerCase().includes(q.toLowerCase()));
+
+        console.log(articlesByTitel);
+
+        res.render("index", {
+            topics,
+            articles : articlesByTitel
+        });
+
+    }
+    else {
+        res.render("error", {
+            error: "Error - 404 Page not Found"
+        });
+    };
+
+});
+
+app.get("/:topic" , (req,res) => {
     
     const articlesByTopic : NewsArticle[] = [];
     
     for (let i = 0; i < articles.length; i++) {
-        if(articles[i].topic === "politics"){
-            articlesByTopic.push(articles[i]);
-    }
-    }    
 
+        if(articles[i].topic === req.params.topic){
+            
+            articlesByTopic.push(articles[i]);
+        }
+    }    
+    
     res.render("index", {
         topics,
         articles : articlesByTopic
@@ -147,71 +177,72 @@ app.get("/politics" , (req,res) => {
 });
 
 
-app.get("/economy" , (req,res) => {
+
+// app.get("/economy" , (req,res) => {
     
-    const articlesByTopic : NewsArticle[] = [];
+//     const articlesByTopic : NewsArticle[] = [];
     
-    for (let i = 0; i < articles.length; i++) {
-        if(articles[i].topic === "economy"){
-            articlesByTopic.push(articles[i]);
-    }
-    }    
+//     for (let i = 0; i < articles.length; i++) {
+//         if(articles[i].topic === "economy"){
+//             articlesByTopic.push(articles[i]);
+//     }
+//     }    
 
-    res.render("index", {
-        topics,
-        articles : articlesByTopic
-    });
-});
+//     res.render("index", {
+//         topics,
+//         articles : articlesByTopic
+//     });
+// });
 
 
-app.get("/sports" , (req,res) => {
+// app.get("/sports" , (req,res) => {
     
-    const articlesByTopic : NewsArticle[] = [];
+//     const articlesByTopic : NewsArticle[] = [];
     
-    for (let i = 0; i < articles.length; i++) {
-        if(articles[i].topic === "sports"){
-            articlesByTopic.push(articles[i]);
-    }
-    }    
+//     for (let i = 0; i < articles.length; i++) {
+//         if(articles[i].topic === "sports"){
+//             articlesByTopic.push(articles[i]);
+//     }
+//     }    
 
-    res.render("index", {
-        topics,
-        articles : articlesByTopic
-    });
-});
+//     res.render("index", {
+//         topics,
+//         articles : articlesByTopic
+//     });
+// });
 
 
-app.get("/entertainment" , (req,res) => {
+// app.get("/entertainment" , (req,res) => {
     
-    const articlesByTopic : NewsArticle[] = [];
+//     const articlesByTopic : NewsArticle[] = [];
     
-    for (let i = 0; i < articles.length; i++) {
-        if(articles[i].topic === "entertainment"){
-            articlesByTopic.push(articles[i]);
-    }
-    }    
+//     for (let i = 0; i < articles.length; i++) {
+//         if(articles[i].topic === "entertainment"){
+//             articlesByTopic.push(articles[i]);
+//     }
+//     }    
 
-    res.render("index", {
-        topics,
-        articles : articlesByTopic
-    });
-});
+//     res.render("index", {
+//         topics,
+//         articles : articlesByTopic
+//     });
+// });
 
-app.get("/technology" , (req,res) => {
+// app.get("/technology" , (req,res) => {
     
-    const articlesByTopic : NewsArticle[] = [];
+//     const articlesByTopic : NewsArticle[] = [];
     
-    for (let i = 0; i < articles.length; i++) {
-        if(articles[i].topic === "technology"){
-            articlesByTopic.push(articles[i]);
-    }
-    }    
+//     for (let i = 0; i < articles.length; i++) {
+//         if(articles[i].topic === "technology"){
+//             articlesByTopic.push(articles[i]);
+//     }
+//     }    
 
-    res.render("index", {
-        topics,
-        articles : articlesByTopic
-    });
-});
+//     res.render("index", {
+//         topics,
+//         articles : articlesByTopic
+//     });
+// });
 
 
 app.get("/headers",(req,res)=>{

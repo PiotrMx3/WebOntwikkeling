@@ -55,3 +55,29 @@ ul > li {
 .newsArticle h2,p {
   margin-inline: auto;
 }
+
+#searchField {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+#searchField input {
+  border: 1px solid gray;
+  padding: 0.5rem;
+  border-radius: 5%;
+}
+
+#searchField button {
+  background-color: gray;
+  color: black;
+  padding: 0.5rem;
+  font-weight: bold;
+  border-radius: 5%;
+  transition: all 1s ease-out;
+}
+
+#searchField button:hover {
+  cursor: pointer;
+  transform: scale(0.95);
+}
