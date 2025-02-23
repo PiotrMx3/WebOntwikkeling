@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title><%= title %></title>
+</head>
+<body>
+    <h1><%= message %></h1>
+    <section id="loginField">
+        <form action="/" method="post">
+
+            <label for="fieldName">What's your name?</label>
+            <br/>
+            <input type="text" name="name" id="fieldName" required>
+            <br/>
+            <label for="selectAnimal">What animal are you looking for?</label>
+            <br/>
+            <select name="sortAnimal" id="selectAnimal">
+                <% for (const el of animal) { %>
+                    <option value="<%= el.value %>"><%= el.name %></option>
+                <%}%>
+            </select>
+            <br/>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+</body>
+</html>

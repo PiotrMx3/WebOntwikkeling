@@ -39,9 +39,7 @@ function perfmedOperator(operator : string, a : number , b : number) {
             if(b === 0) {
                 throw new Error("Division by 0 is not allowed."); 
             } 
-            else {
                 return a / b;
-            }
                 
         default:
             throw new Error("Unknown operator."); 

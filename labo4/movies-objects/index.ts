@@ -57,8 +57,8 @@ console.log(`${data[0].title} komt uit jaren 90s`)
 
 
 
-function averageMetaScore(movie:Movie[]):number {
-    
+    function averageMetaScore(movie:Movie[]):number {
+
    const average : number = (movie.reduce((a,b) => a + b.metascore, 0)) / movie.length;
 
    return average;

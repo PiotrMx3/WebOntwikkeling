@@ -134,9 +134,6 @@ app.get("/" , (req,res) => {
 app.get("/search" , (req ,res) => {
 
     const q = typeof req.query.q === "string" ? req.query.q : "";
-
-   
-
     
     if(q !== "" && isNaN(Number(q))) {   
         
@@ -251,7 +248,7 @@ app.get("/headers",(req,res)=>{
 
     res.type("text/html")
     res.send(`Your browser is ${userAgent}`);
-})
+});
 
 
 app.use((req,res) => {
@@ -260,7 +257,7 @@ app.use((req,res) => {
         error: "Error - 404 Page not Found"
     });
     res.end();
-})
+});
 
 app.listen(app.get("port"), () => {
     console.log("Server started on http://localhost:" + app.get("port"));

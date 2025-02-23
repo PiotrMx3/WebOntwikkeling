@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Steam Games</title>
+    <script>
+
+        function sortTable(field) {
+            const urlParams = new URLSearchParams(window.location.search);
+            let currentSortField = urlParams.get("sortField");
+            let currentSortDirection = urlParams.get("sortDirection");
+
+            
+            let newDirection = (currentSortField === field && currentSortDirection === "desc") ? "asc" : "desc";
+
+            
+            window.location.href = `/?sortField=${field}&sortDirection=${newDirection}`;
+        }
+    </script>
+</head>
+<body>
+    <form action="/" method="get">
+        <select name="sortField">
+            <option value="name" <%= field === "name" ? "selected" : "" %> >Name</option> 
+            <option value="releaseYear" <%= field === "releaseYear" ? "selected" : "" %> >Release Year</option>
+            <option value="minimumAge" <%= field === "minimumAge" ? "selected" : "" %> >Minimum Age</option>
+            <option value="developer" <%= field === "developer" ? "selected" : "" %> >Developer</option>
+        </select>
+        <select name="sortDirection">
+            <option value="asc" <%= order === "asc" ? "selected" : "" %> >Asc</option> 
+            <option value="desc" <%= order === "desc" ? "selected" : "" %> >Desc</option> 
+        </select>
+        <button type="submit">Sort</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th onclick="sortTable('name')" class="<%= field === 'name' ? (order === 'asc' ? 'asc' : 'desc') : '' %>">Name</th>
+
+                <th onclick="sortTable('releaseYear')" class="<%= field === 'releaseYear' ? (order === 'asc' ? 'asc' : 'desc') : '' %>">Release Year</th>
+
+                <th onclick="sortTable('minimumAge')" class="<%= field === 'minimumAge' ? (order === 'asc' ? 'asc' : 'desc') : '' %>">Minimum Age</th>
+
+                <th onclick="sortTable('developer')" class="<%= field === 'developer' ? (order === 'asc' ? 'asc' : 'desc') : '' %>">Developer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let game of games) { %>
+                <tr>
+                    <td><%- game.name %></td>
+                    <td><%- game.releaseYear %></td>
+                    <td><%- game.minimumAge %></td>
+                    <td><%- game.developer %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html>
