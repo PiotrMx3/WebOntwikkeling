@@ -1,43 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <title><%= title %></title>
-</head>
-<body>
-
+  </head>
+  <body>
     <article class="container">
-       <% for (el of message) {%>
-           <p class="<%= messageClass %>"><%= el %></p>
-       <%}%>
-        <h1>Contact Form</h1>
+      <% for (el of message) {%>
+      <p class="<%= messageClass %>"><%= el %></p>
+      <%}%>
+      <h1>Contact Form</h1>
       <form action="/contact" method="post">
         <section class="form-group">
           <label for="firstName">First name</label>
-          <input type="text" id="firstName" name="firstName" value="<%= fields.firstName %>">
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            value="<%= fields.firstName %>"
+          />
         </section>
         <section class="form-group">
           <label for="lastName">Last name</label>
-          <input type="text" id="lastName" name="lastName">
+          <input type="text" id="lastName" name="lastName" />
         </section>
         <section class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email">
+          <input type="email" id="email" name="email" />
         </section>
         <section class="form-group">
           <label for="message">Message</label>
           <textarea id="message" name="message"></textarea>
         </section>
         <section class="checkbox-group">
-          <input type="checkbox" id="terms" name="terms">
-          <label for="terms" style="font-weight: normal;">I agree to the terms and conditions</label>
+          <input type="checkbox" id="terms" name="terms" />
+          <label for="terms" style="font-weight: normal"
+            >I agree to the terms and conditions</label
+          >
         </section>
         <button type="submit" class="submit-btn">Submit</button>
       </form>
     </article>
-  
   </body>
 </html>

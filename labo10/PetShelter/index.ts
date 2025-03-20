@@ -5,7 +5,7 @@ import { read } from "fs";
 
 dotenv.config();
 
-const app : Express = express();
+const app: Express = express();
 
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -15,43 +15,39 @@ app.set("views", path.join(__dirname, "views"));
 
 app.set("port", process.env.PORT ?? 3000);
 
-
 interface Animal {
-    name: string,
-    value:string
+  name: string;
+  value: string;
 }
 
-const animals: Animal[] = 
-[
-    {name: "Dog" , value: "dog"},
-    {name: "Cat" , value: "cat"},
-    {name: "Rabbit" , value: "rabbit"},
-]
-
-
+const animals: Animal[] = [
+  { name: "Dog", value: "dog" },
+  { name: "Cat", value: "cat" },
+  { name: "Rabbit", value: "rabbit" },
+];
 
 app.get("/", (req, res) => {
-    res.render("index", {
-        title: "First Post req",
-        message: "Welcome To Random Animal Generator!",
-        animal:animals
-    })
+  res.render("index", {
+    title: "First Post req",
+    message: "Welcome To Random Animal Generator!",
+    animal: animals,
+  });
 });
 
 app.post("/", (req, res) => {
-    const name = req.body.name;
-    const animal = req.body.sortAnimal;
-    const number = Math.floor(Math.random() * 5) + 1;
+  const name = req.body.name;
+  const animal = req.body.sortAnimal;
+  const number = Math.floor(Math.random() * 5) + 1;
 
-res.render("response", {
+  res.render("response", {
     title: "First Post req",
     message: animal,
     userName: name,
     choiceAnimal: animal,
-    nrAnimal: number
-});
+    nrAnimal: number,
+  });
 });
 
 app.listen(app.get("port"), () => {
-    console.log("Server started on http://localhost:" + app.get("port"));
+  console.log("Server started on http://localhost:" + app.get("port"));
 });

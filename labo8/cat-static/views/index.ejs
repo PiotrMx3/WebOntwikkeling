@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
     <title>Cats</title>
-</head>
-<body>
-<h1>Cat Colletions !</h1>
+  </head>
+  <body>
+    <h1>Cat Colletions !</h1>
     <section class="cats_container">
-        <% for (let i = 0; i < cats.length; i++) { %>
-            <img src="/assets/images/<%= cats[i] %>.jpeg" alt="<%= cats[i] %>">
-        <% } %>
+      <% for (let i = 0; i < cats.length; i++) { %>
+      <img src="/assets/images/<%= cats[i] %>.jpeg" alt="<%= cats[i] %>" />
+      <% } %>
     </section>
-
-</body>
+  </body>
 </html>
