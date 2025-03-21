@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <title>
+    <%= title %>
+  </title>
+</head>
+
+<body>
+  <form action="/sort" method="get">
+    <select name="sortField">
+      <% fields.forEach(el=> { %>
+        <option value="<%= el.value  %>" <%=el.selected %>
+          ><%= el.text %>
+        </option>
+        <% }) %>
+    </select>
+    <select name="sortDirection">
+      <% direction.forEach(el=> { %>
+        <option value="<%= el.value  %>" <%=el.selected %>
+          ><%= el.text %>
+        </option>
+        <% }) %>
+    </select>
+    <button type="submit">Sort</button>
+  </form>
+
+  <% if (sortField !=="" ) { %>
+    <% for (let person of persons) { %>
+      <p>
+        <%= person.name %> (<%= person.age %>)
+      </p>
+      <% } %>
+        <% } %>
+</body>
+
+</html>
