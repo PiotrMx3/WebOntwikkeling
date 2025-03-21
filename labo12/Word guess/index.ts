@@ -1,6 +1,14 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
 import path from "path";
+import { emit } from "process";
+import {
+  isFiveLetterWord,
+  getFiveLetterWords,
+  toUpperCase,
+  getRandomWord,
+} from "./words";
+import { cp } from "fs";
 
 dotenv.config();
 
@@ -14,7 +22,7 @@ app.set("views", path.join(__dirname, "views"));
 
 app.set("port", process.env.PORT || 3000);
 
-const WORDS = [
+let WORDS = [
   "water",
   "bread",
   "frenzy",
@@ -41,17 +49,86 @@ const WORDS = [
 
 let randomWord = "water";
 
-app.get("/words", (req, res) => {});
+app.get("/words", (req, res) => {
+  const q = typeof req.query.q === "string" ? req.query.q : "";
+  const direction =
+    typeof req.query.sortDirection === "string" ? req.query.sortDirection : "";
 
-app.get("/guess", (req, res) => {});
+  let formatted = toUpperCase(WORDS);
 
-app.get("/restart", (req, res) => {});
+  if (q === "") {
+    direction === "desc"
+      ? formatted.sort((a, b) => b.localeCompare(a))
+      : formatted.sort((a, b) => a.localeCompare(b));
+    formatted = formatted.slice(0, 40);
+  } else {
+    const includWord = toUpperCase(
+      WORDS.filter((el) => el.toLowerCase().includes(q.toLowerCase()))
+    );
 
-app.get("/", (req, res) => {
-  res.render("index", {});
+    direction === "desc"
+      ? includWord.sort((a, b) => b.localeCompare(a))
+      : includWord.sort((a, b) => a.localeCompare(b));
+
+    return res.render("words", {
+      list: includWord,
+      q: q,
+      dir: direction,
+    });
+  }
+
+  res.render("words", {
+    list: formatted,
+    q: q,
+    dir: direction,
+  });
 });
 
-function createNewWord() {}
+app.get("/guess", (req, res) => {
+  res.render("guess", {
+    word: undefined,
+    colors: undefined,
+    lengthCheck: true,
+    guessed: false,
+  });
+
+  console.log(randomWord);
+});
+
+app.post("/guess", (req, res) => {
+  const userWord = req.body.guess.toUpperCase();
+  const aftercheck = checkWord(userWord, randomWord);
+  // const lengthCheck = userWord.length !== 5;
+  const lengthCheck = WORDS.includes(userWord.toLowerCase());
+
+  const guessed = aftercheck.every((color) => color.toLowerCase() === "green");
+
+  // aftercheck.forEach((el) => {
+  //   if (el.toLowerCase() !== "green") guessed = false;
+  // });
+
+  res.render("guess", {
+    word: userWord,
+    colors: aftercheck,
+    lengthCheck: lengthCheck,
+    guessed: guessed,
+  });
+});
+
+app.get("/restart", (req, res) => {
+  randomWord = createNewWord();
+  res.redirect("/");
+});
+
+app.get("/", (req, res) => {
+  res.render("index");
+});
+
+function createNewWord() {
+  const wordsArray = getFiveLetterWords(WORDS);
+  const random = getRandomWord(wordsArray);
+  return random;
+}
 
 function checkWord(guess: string, target: string): string[] {
   guess = guess.toUpperCase();
@@ -80,7 +157,11 @@ function checkWord(guess: string, target: string): string[] {
   );
 }
 
-app.listen(app.get("port"), () => {
-  createNewWord();
+app.listen(app.get("port"), async () => {
+  randomWord = createNewWord();
+  const data = await fetch(
+    "https://raw.githubusercontent.com/similonap/word-guess-api/main/words.json"
+  );
+  WORDS = await data.json();
   console.log("Server started on http://localhost:" + app.get("port"));
 });
