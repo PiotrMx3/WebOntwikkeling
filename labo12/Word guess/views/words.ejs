@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-
-<body>
+<%- include("/partials/header") %>
     <main>
         <h1>Word Guess</h1>
-            
+
         <form action="/words" method="GET">
             <input type="text" name="q" value="">
             <select name="sortDirection">
@@ -44,6 +35,4 @@
             <li>CHANT</li>
         </ul>
     </main>
-</body>
-
-</html>
+    <%- include("/partials/footer") %>
