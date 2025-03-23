@@ -1,14 +1,14 @@
-import express, { Express } from "express";
+import express, {Express} from "express";
 import dotenv from "dotenv";
 import path from "path";
-import { emit } from "process";
+import {emit} from "process";
 import {
   isFiveLetterWord,
   getFiveLetterWords,
   toUpperCase,
   getRandomWord,
 } from "./words";
-import { cp } from "fs";
+import {cp} from "fs";
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ const app: Express = express();
 
 app.set("view engine", "ejs");
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 

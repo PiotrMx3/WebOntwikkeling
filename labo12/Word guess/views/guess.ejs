@@ -1,39 +1,37 @@
 <%- include("partials/header") %>
-    <main>
-        <h1>Word Guess</h1>
-        <p>Guess the word!</p>
+  <main>
+    <h1>Word Guess</h1>
+    <p>Guess the word!</p>
 
-        <% if (!lengthCheck) { %>
+    <% if (!lengthCheck) { %>
 
-            <p style="color: red">The word is not in de list of possible words.</p>
+      <p style="color: red">The word is not in de list of possible words.</p>
 
-            <% } else { %>
+      <% } else { %>
+        <% if (guessed) { %>
 
-                <% if (guessed) { %>
+          <p style="color: green">
+            Congratulations! You guessed the word.
+            <a href="/restart">Click to play again!</a>
+          </p>
 
-                    <p style="color: green">Congratulations! You guessed the word. <a href="/restart">Click to play
-                            again!</a></p>
+          <% } %>
 
+            <div class="letter-container">
+              <% if (colors !==undefined && word !==undefined) { %>
+                <% for( let i=0; i < word.length; i++ ) { %>
+
+                  <span class="<%= colors[i] %>">
+                    <%= word[i] %>
+                  </span>
+                  <% } %>
                     <% } %>
+            </div>
+            <% } %>
 
-                        <div class="letter-container">
-                            <% if (colors !==undefined && word !==undefined) { %>
-
-                                <% for( let i=0; i < word.length; i++ ) { %>
-
-                                    <span class=" <%= colors[i] %>">
-                                        <%= word[i] %>
-                                    </span>
-                                    <% } %>
-
-                                        <% } %>
-                        </div>
-                        <% } %>
-
-                            <form action="/guess" method="POST">
-                                <input type="text" name="guess" placeholder="Enter your guess">
-                                <button type="submit">Submit</button>
-                            </form>
-
-    </main>
-    <%- include("partials/footer") %>
+              <form action="/guess" method="POST">
+                <input type="text" name="guess" placeholder="Enter your guess" />
+                <button type="submit">Submit</button>
+              </form>
+  </main>
+  <%- include("partials/footer") %>

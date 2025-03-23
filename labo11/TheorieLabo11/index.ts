@@ -1,9 +1,9 @@
-import express, { Express } from "express";
-import { Request, Response, NextFunction } from "express";
-import { errorHandler } from "./middleware/errorHandling";
+import express, {Express} from "express";
+import {Request, Response, NextFunction} from "express";
+import {errorHandler} from "./middleware/errorHandling";
 import dotenv from "dotenv";
 import path from "path";
-import { register } from "module";
+import {register} from "module";
 
 dotenv.config();
 let requestLog: Record<string, number> = {};
@@ -30,7 +30,7 @@ const app: Express = express();
 
 app.set("view engine", "ejs");
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 
@@ -41,7 +41,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(maxRequest({ maxReq: 10 }));
+app.use(maxRequest({maxReq: 10}));
 
 app.use((req, res, next) => {
   res.locals.title = "My website";
@@ -59,7 +59,7 @@ app.get("/error", (req, res, next) => {
   next(error); // Przekazuje błąd do error handling middleware
 });
 
-app.use(errorHandler({ statusCode: 500 }));
+app.use(errorHandler({statusCode: 500}));
 
 app.listen(app.get("port"), () => {
   console.log("Server started on http://localhost:" + app.get("port"));
