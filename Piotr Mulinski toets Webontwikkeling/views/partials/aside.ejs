@@ -1,0 +1,28 @@
+    <aside>
+
+        <div class="aside_input">
+            <span class="material-icons aside_search-icon">search</span>
+            <input type="text" placeholder="Search Y">
+    
+        </div>
+    
+        <div class="aside_container">
+            <div class="trends">
+                <span class="title">Trends for you</span>
+
+                <% trends.forEach(trend => { %>
+
+                    <div class="trend">
+                        <div class="trend_category"><%= trend.category %></div>
+                        <div class="trend_name"><%= trend.hashtag %></div>
+                        <div class="trend_amount"><%= trend.posts %></div>
+                        <span class="material-icons dots"><span class="material-symbols-outlined">more_horiz</span></span>
+                    </div>
+                 
+                <% }) %>
+        
+    
+        </div>
+        
+        
+    </aside>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<%- include('partials/header') %>
+<%- include('partials/nav') %> 
+
+    <main style="position: relative">
+        <div class="header">
+            <h2><%= profile.name %></h2>
+        </div>
+    
+        <img class="profile_banner" src="/images/banners/<%= profile.username %>.png"/>
+        <img class="profile_avatar" src="/images/avatars/<%= profile.username %>.png"/>
+    
+        <section class="profile">
+            <div class="profile_name"><%= profile.name %></div>
+            <div class="profile_handle">@<%= profile.username %></div>
+            <div class="profile_bio"><%= profile.bio %>
+        </section>
+        <%- include('partials/posts') %>  
+    </main>    
+
+
+    <%- include('partials/aside') %>    
+    <%- include('partials/footer') %>
