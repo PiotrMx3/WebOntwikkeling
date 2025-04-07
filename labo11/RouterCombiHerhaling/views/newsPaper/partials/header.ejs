@@ -1,0 +1,10 @@
+<header>
+  <nav>
+    <ul>
+      <% for( let i=0; i < topics.length; i++ ) { %>
+        <li><a href="/newspaper/<%= topics[i].toLowerCase() === " home" ? "" : topics[i] %>"> <%= topics[i] %>
+          </a></li>
+        <% } %>
+    </ul>
+  </nav>
+</header>

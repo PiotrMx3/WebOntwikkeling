@@ -5,14 +5,14 @@ import {
   getTweets,
   getTweetsByHandle,
 } from "./data";
-import { Profile, Tweet } from "./types";
+import {Profile, Tweet} from "./types";
 
 const app = express();
 
 app.set("view engine", "ejs");
 
-app.use(express.json({ limit: "1mb" }));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({limit: "1mb"}));
+app.use(express.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 app.get("/", async (req, res) => {
@@ -24,7 +24,7 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  const newTweet: Tweet = { ...req.body, createdOn: new Date().toISOString() };
+  const newTweet: Tweet = {...req.body, createdOn: new Date().toISOString()};
   createTweet(newTweet);
   res.redirect("/");
 });

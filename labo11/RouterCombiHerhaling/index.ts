@@ -1,10 +1,9 @@
 import express, {Express} from "express";
-import mathService from "./routers/mathService";
-import contactForm from "./routers/contactForm";
-import newsPaper from "./routers/newsPaper";
-
 import dotenv from "dotenv";
 import path from "path";
+import mathRouter from "./routers/mathservice";
+import newsPaperRouter from "./routers/newsPaperRouter";
+import contactFormRouter from "./routers/contactForm";
 
 dotenv.config();
 
@@ -25,9 +24,9 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/math", mathService());
-app.use("/contactform", contactForm());
-app.use("/newspaper", newsPaper());
+app.use("/math", mathRouter());
+app.use("/newspaper", newsPaperRouter());
+app.use("/contactform", contactFormRouter());
 
 app.listen(app.get("port"), () => {
   console.log("Server started on http://localhost:" + app.get("port"));

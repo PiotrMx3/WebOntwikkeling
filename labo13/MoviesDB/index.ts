@@ -45,11 +45,28 @@ async function main() {
       .find<Movies>({})
       .toArray();
 
+    const dataOne = await client
+      .db("exercises")
+      .collection("movies")
+      .findOne<Movies>({});
+
+    console.log("");
+
+    // if !dataOne { niks gevonden } else {...}
+    console.log("First movie:");
+    console.log(
+      `Naam: ${dataOne?.name} Score: ${dataOne?.myScore} Aantal bekijken: ${dataOne?.timesViewed}`
+    );
+
+    console.log("");
+
+    console.log("All Movies: ");
     data.forEach((el) => {
       console.log(
         `Naam: ${el.name} Score: ${el.myScore} Aantal bekijken: ${el.timesViewed}`
       );
     });
+    console.log("");
   } catch (e) {
     console.log(e);
   } finally {
