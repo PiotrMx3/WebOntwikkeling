@@ -1,7 +1,6 @@
-import {Db, MongoClient, ObjectId} from "mongodb";
+import {MongoClient, ObjectId} from "mongodb";
 import dotnev from "dotenv";
-import {isGeneratorFunction, isNativeError} from "util/types";
-import {count} from "console";
+
 dotnev.config();
 
 const uri: string = process.env.MONGO_URI || "";
@@ -70,7 +69,7 @@ async function main() {
   } catch (e) {
     console.log(e);
   } finally {
-    client.close();
+    await client.close();
     console.log("Disconnected");
   }
 }
