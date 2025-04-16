@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>PETS</title>
+</head>
+
+<body>
+    <% if (error) { %>
+        <h1>Niks gevonden !</h1>
+        <% } else { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Type</th>
+                        <th>Breed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% pets.forEach(el=> { %>
+                        <tr>
+                            <td>
+                                <%= el.name %>
+                            </td>
+                            <td>
+                                <%= el.age %>
+                            </td>
+                            <td>
+                                <%= el.type %>
+                            </td>
+                            <td>
+                                <%= el.breed %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+
+
+            <% } %>
+</body>
+
+</html>
