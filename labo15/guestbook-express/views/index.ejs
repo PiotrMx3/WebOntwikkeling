@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <form action="/" method="post">
+        <label for="name-field"></label>
+        <input type="text" name="name" id="name-field" required>
+        <label for="text-field"></label>
+        <textarea name="message" id="text-field" required></textarea>
+        <button type="submit">SUBMIT</button>
+    </form>
+    <% entries.forEach(el=> { %>
+
+        <article>
+            <h2>
+                <%= el.name %>
+            </h2>
+            <p>
+                <%= el.message %>
+            </p>
+            <p>
+                <%= el.formattedDate %>
+            </p>
+        </article>
+        <% }) %>
+</body>
+
+</html>

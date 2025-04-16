@@ -101,16 +101,15 @@ async function main() {
   const db = client.db(dbName);
 
   try {
-    // await createGamesCollection(db, collectionName);
-    await showAllGames(db, collectionName, "rating", -1);
+    await createGamesCollection(db, collectionName);
+    // await showAllGames(db, collectionName, "rating");
+    // await discountAllGames(db, collectionName, 20);
+    // await showGamesWithPriceBetween(db, collectionName, 20, 40);
     // await showAllGames(db, collectionName, "price");
     // await showAllGames(db, collectionName, "releaseDate");
-    await showHighestRatedGame(db, collectionName);
-    //   db,
-    //   collectionName,
-    //   "Sony Interactive Entertainment"
-    // );
+    // await showHighestRatedGame(db, collectionName);
     // await showGamesCheaperThan(db, collectionName, 40);
+    // await deletAllGames(db, collectionName);
   } catch (error) {
     console.log("error in main", error);
   } finally {
@@ -120,6 +119,76 @@ async function main() {
 }
 
 main();
+
+async function deletAllGames(db: Db, collectionName: string) {
+  try {
+    const games = await db.collection(collectionName).deleteMany({});
+    await db.collection(collectionName).drop();
+    console.log("Record removed: ", games.deletedCount);
+  } catch (error) {
+    console.log("Error in deletAllGames ", error);
+  }
+}
+
+async function discountAllGames(
+  db: Db,
+  collectionName: string,
+  precentage: number
+) {
+  try {
+    const games = await db.collection(collectionName).find<Game>({}).toArray();
+
+    if (!games.length) {
+      console.log("No item's found !");
+      return;
+    }
+
+    const result: GameView[] = games.map((el) => {
+      return {
+        name: el.name,
+        price: Number((el.price - el.price * (precentage / 100)).toFixed(2)),
+        releaseDate: el.releaseDate,
+        rating: el.rating,
+      };
+    });
+
+    console.table(result);
+  } catch (error) {
+    console.log("Error in discountAllGames: ", error);
+  }
+}
+
+async function showGamesWithPriceBetween(
+  db: Db,
+  collectionName: string,
+  min: number,
+  max: number
+) {
+  try {
+    const games = await db
+      .collection(collectionName)
+      .find<Game>({$and: [{price: {$gt: min}}, {price: {$lt: max}}]})
+      .toArray();
+
+    if (!games.length) {
+      console.log("No items found");
+      return;
+    }
+
+    const result: GameView[] = games.map((el) => {
+      return {
+        name: el.name,
+        price: el.price,
+        releaseDate: el.releaseDate,
+        rating: el.rating,
+      };
+    });
+
+    console.table(result);
+  } catch (error) {
+    console.log("Error in showGamesWithPriceBetween: ", error);
+  }
+}
 
 async function showHighestRatedGame(db: Db, collectionName: string) {
   try {
