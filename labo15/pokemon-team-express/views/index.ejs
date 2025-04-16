@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <h1>
+        <%= message %>
+    </h1>
+
+    <% if (error) { %>
+        <h2>Deze Pokemon is already in your team !</h2>
+        <% } %>
+            <form action="/" method="post">
+                <label for="drop-field"></label>
+                <select required name="pokemon" id="drop-field">
+                    <option value="" selected disabled>Make a chocie! ...</option>
+                    <% pokemons.forEach(el=> { %>
+
+                        <option value="<%= el %>">
+                            <%= el %>
+                        </option>
+
+                        <% }) %>
+                </select>
+                <button type="submit">Add to Team</button>
+            </form>
+            <h2>Your's Poketeam:</h2>
+            <% team.forEach(el=> { %>
+                <p>
+                    <%= el.pokemon %>
+                </p>
+                <% }) %>
+</body>
+
+</html>
