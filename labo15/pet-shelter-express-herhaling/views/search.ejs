@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Pets</title>
+</head>
+
+<body>
+
+    <form action="/pets/search" method="get">
+        <label for="search-field"></label>
+        <input type="text" name="q" id="search-field">
+        <button type="submit">Search </button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Type</th>
+                <th>Breed</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% if (animals.length !==0) { %>
+                <% animals.forEach(animal=> { %>
+                    <tr>
+
+                        <td>
+                            <%= animal.name %>
+                        </td>
+                        <td>
+                            <%= animal.age %>
+                        </td>
+                        <td>
+                            <%= animal.type %>
+                        </td>
+                        <td>
+                            <%= animal.breed %>
+                        </td>
+                    </tr>
+                    <% }) %>
+
+                        <% } %>
+
+        </tbody>
+    </table>
+</body>
+
+</html>
