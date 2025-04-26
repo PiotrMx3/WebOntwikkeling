@@ -124,9 +124,10 @@ async function initDb() {
     console.log("Connected to DB");
   } catch (error) {
     console.error(error);
+  } finally {
+    await client.close();
+    console.log("Disconnected from DB");
   }
-  await client.close();
-  console.log("Disconnected from DB");
 }
 
 function printPets(pets: Pet[]) {
