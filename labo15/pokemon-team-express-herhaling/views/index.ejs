@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <main class="container">
+        <% if (error) { %>
+            <div class="card post-card">
+                <h1>
+                    Pokemon already in Team
+                </h1>
+            </div>
+            <% } %>
+                <section class="card form-card">
+                    <form action="/" method="POST" id="comment-form">
+                        <div class="form-group">
+                            <select name="pokemon" id="pokemon">
+                                <% pokemons.forEach(pokemon=> { %>
+
+                                    <option value="<%= pokemon %>">
+                                        <%= pokemon %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                        </div>
+                        <!-- <div class="form-group">
+                    <textarea name="message" rows="4" placeholder="Your message" required></textarea>
+                </div> -->
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                </section>
+
+
+                <section id="posts-container">
+
+                    <% poketeam.forEach(pokemon=> { %>
+                        <div class="card post-card">
+                            <h2>
+                                <%= pokemon.pokemon %>
+                            </h2>
+                        </div>
+                        <% }) %>
+
+                            <!-- <p>
+                        el.message
+                    </p>
+                    <p class="timestamp">
+                        el.formattedDate
+                    </p> -->
+
+                </section>
+
+    </main>
+</body>
+
+</html>
