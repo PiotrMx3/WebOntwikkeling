@@ -1,0 +1,74 @@
+/* style.css */
+/* Reset en fonts */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f5f7;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  line-height: 1.4;
+}
+
+/* main container */
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+/* cards */
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Form */
+.form-card .form-group {
+  margin-bottom: 12px;
+}
+.form-card input[type="text"],
+.form-card textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+.form-card textarea {
+  resize: vertical;
+}
+.btn {
+  display: inline-block;
+  background-color: #5c6ac4;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.btn:hover {
+  background-color: #4b5bb5;
+}
+
+/* posts */
+.post-card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+.post-card p {
+  margin-bottom: 8px;
+}
+.post-card .timestamp {
+  font-size: 0.85rem;
+  color: #666;
+}
