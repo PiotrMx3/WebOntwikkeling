@@ -1,0 +1,105 @@
+<%- include('partials/header') %>
+    <form>
+        <div class="framed">
+            <table width="100%">
+                <thead>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Weight</th>
+                    <th>Height</th>
+                    <th>Types</th>
+                    <th style="width: 150px">HP</th>
+                    <th></th>
+                </thead>
+                <% player.pokemon.forEach(pokemon=> { %>
+                    <tr>
+                        <td><img src="<%= pokemon.image %>" />
+                        </td>
+                        <td>
+                            <%= pokemon.name %>
+                        </td>
+                        <td>
+                            <%= pokemon.weight %>
+                        </td>
+                        <td>
+                            <%= pokemon.height %>
+                        </td>
+                        <td>
+                            <% pokemon.types.forEach(type=> { %>
+
+                                <img src="/images/types/<%= type %>.gif" />
+                                <% }) %>
+                        </td>
+                        <td>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar p<%= pokemon.currentHP %>" id="progressBarG"></div>
+                            </div>
+                            <div style="margin-top: 5px">
+                                <%= pokemon.currentHP %>/<%= pokemon.maxHP %>
+                            </div>
+                        </td>
+                        <td>
+                            <button formmethod="post"
+                                formaction="/player/<%= playerId %>/pokemon/delete/<%= pokemon.id %>">
+                                X
+                            </button>
+                        </td>
+                    </tr>
+                    <% }) %>
+
+
+            </table>
+            <div class="poke-summary">
+                <table>
+                    <tr>
+                        <th>Used types</th>
+                        <% types.forEach(type=> { %>
+                            <td>
+                                <img src="/images/types/<%= type %>.gif" />
+                            </td>
+                            <% }) %>
+                    </tr>
+                    <tr>
+                        <th>Largest</th>
+                        <td>
+                            <%= heightRange.max %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Smallest</th>
+                        <td>
+                            <%= heightRange.min %>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="framed" id="allPokemon">
+
+            <% pokemons.forEach(pokemon=> { %>
+                <button formmethod="post" formaction="/player/<%= playerId %>/pokemon/add/<%= pokemon.id %>">
+                    <%= pokemon.name %> #<%= pokemon.id %>
+                </button>
+                <% }) %>
+
+                    <div class="type-filter">
+                        <a href="/player/<%= playerId %>/pokemon?filter=grass#allPokemon"><img
+                                src="/images/types/grass.gif"></a>
+                        <a href="/player/<%= playerId%>/pokemon?filter=fire#allPokemon"><img
+                                src="/images/types/fire.gif"></a>
+                        <a href="/player/<%= playerId%>/pokemon?filter=bug#allPokemon"><img
+                                src="/images/types/bug.gif"></a>
+                        <!-- Gebruik een for loop om over alle types te gaan. Je kan de types in een array plaatsen. -->
+
+                    </div>
+        </div>
+
+        <div class="framed">
+            Welcome <%= player.name %>. What do you want to do: <br /><br />
+
+                <button formaction="/player/<%= playerId %>">Back</button>
+        </div>
+    </form>
+
+    <%- include('partials/footer') %>
