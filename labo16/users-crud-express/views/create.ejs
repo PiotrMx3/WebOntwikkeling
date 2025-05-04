@@ -1,0 +1,83 @@
+<%- include('partials/header') %>
+    <section>
+        <header>
+            <h1>Manage Users</h1>
+        </header>
+
+        <form action="/users/create" method="post">
+            <section>
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name">
+            </section>
+            <section>
+                <label for="username">username:</label>
+                <input type="text" name="username" id="username">
+            </section>
+            <section>
+                <label for="email">E-mail:</label>
+                <input type="text" name="email" id="email">
+            </section>
+
+            <fieldset>
+                <legend>Address:</legend>
+                <section>
+                    <label for="street">Street:</label>
+                    <input type="text" name="address[street]" id="street">
+                </section>
+                <section>
+                    <label for="suite">Suite:</label>
+                    <input type="text" name="address[suite]" id="suite">
+                </section>
+                <section>
+                    <label for="city">City:</label>
+                    <input type="text" name="address[city]" id="city">
+                </section>
+                <section>
+                    <label for="zipcode">Zip-code:</label>
+                    <input type="text" name="address[zipcode]" id="zipcode">
+                </section>
+
+                <fieldset>
+                    <legend>Geo:</legend>
+                    <section>
+                        <label for="lat">Lat:</label>
+                        <input type="text" name="address[geo][lat]" id="lat">
+                    </section>
+                    <section>
+                        <label for="lng">Lng:</label>
+                        <input type="text" name="address[geo][lng]" id="lng">
+                    </section>
+                </fieldset>
+
+            </fieldset>
+
+            <section>
+                <label for="phone">Phone:</label>
+                <input type="text" name="phone" id="phone">
+            </section>
+            <section>
+                <label for="website">Website:</label>
+                <input type="text" name="website" id="website">
+            </section>
+
+            <fieldset>
+                <legend>Company:</legend>
+                <section>
+                    <label for="companyname">Name:</label>
+                    <input type="text" name="company[name]" id="companyname">
+                </section>
+                <section>
+                    <label for="catchphrase">catchPhrase:</label>
+                    <input type="text" name="company[catchPhrase]" id="catchhrase">
+                </section>
+                <section>
+                    <label for="bs">Bs:</label>
+                    <input type="text" name="company[bs]" id="bs">
+                </section>
+            </fieldset>
+
+            <button type="submit">Create User</button>
+        </form>
+
+    </section>
+    <%- include('partials/footer') %>
