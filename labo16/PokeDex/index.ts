@@ -49,12 +49,10 @@ app.post("/createPlayer", async (req, res) => {
 app.get("/player/:id", (req, res) => {
   const id = req.params.id;
 
-  if (!ObjectId.isValid(id)) {
-    return res.sendStatus(400).end();
-  }
   const user = playersCache.find((el) => el._id?.toString() === id);
 
   if (!user) return res.status(404).end();
+
   res.render("player", {
     id: id,
     player: user,
@@ -114,15 +112,15 @@ app.get("/player/:id/pokemon", async (req, res) => {
 
 app.post("/player/:id/save", async (req, res) => {
   const playerId = req.params.id;
+  const user = playersCache.find((el) => el._id?.toString() === playerId);
 
-  if (!ObjectId.isValid(playerId)) {
-    return res.sendStatus(400);
+  if (!user) {
+    return res.sendStatus(404).end();
   }
 
-  const user = playersCache.find((el) => el._id?.toString() === playerId);
-  const pokemontoSave = user?.pokemon ? user.pokemon : [];
-
+  const pokemontoSave = user.pokemon ? user.pokemon : [];
   await savePlayer(playerId, pokemontoSave);
+
   res.redirect("/player/" + req.params.id);
 });
 

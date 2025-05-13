@@ -1,7 +1,6 @@
 import {Collection, MongoClient, ObjectId, ObjectId as string} from "mongodb";
 import dotenv from "dotenv";
 import {Generation, Player, PokeApiPokemon, Pokemon} from "./types";
-import {platform} from "os";
 
 dotenv.config();
 
@@ -48,6 +47,7 @@ export async function addPokemonToPlayer(playerId: string, pokemonId: number) {
 
 export async function getAllPokemons() {
   const result = await collectionPokemonApi.find<Pokemon>({}).toArray();
+
   return result;
 }
 
