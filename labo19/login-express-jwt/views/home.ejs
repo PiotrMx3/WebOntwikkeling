@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <% if (message) { %>
+
+        <%= message.message %>
+            <%= user.name %>
+
+                <% } %>
+
+                    <h1>Hello <%=user.name %> you are logged in with <%= user.email %> as <%= user.role %>
+                    </h1>
+
+                    <form>
+                        <button formaction="/logout" formmethod="post">LOGOUT !</button>
+                    </form>
+
+</body>
+
+</html>
