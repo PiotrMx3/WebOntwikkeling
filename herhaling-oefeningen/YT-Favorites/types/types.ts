@@ -23,3 +23,8 @@ export interface MoviesToDb {
   rating: number;
   fav: 0 | 1;
 }
+
+export interface Flash {
+  type: "error" | "succes";
+  message: string;
+}

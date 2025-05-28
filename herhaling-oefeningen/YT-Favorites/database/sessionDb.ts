@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import session from "express-session";
 import mongoDbSession from "connect-mongodb-session";
 import {mongoUri} from "./mongoClient";
+import {Flash, User} from "../types/types";
 dotenv.config();
 
 const MongoDBStore = mongoDbSession(session);
@@ -18,7 +19,8 @@ mongoStore.on("error", (error) => {
 
 declare module "express-session" {
   export interface SessionData {
-    username?: string;
+    user?: User;
+    flashMessage?: Flash;
   }
 }
 

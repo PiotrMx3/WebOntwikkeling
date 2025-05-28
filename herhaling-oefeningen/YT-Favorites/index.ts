@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 import path from "path";
 import {initDB} from "./database/mongoClient";
 import sessionDb from "./database/sessionDb";
+import {routerLogin} from "./routers/routerLogin";
+import {middlewareFlashMessage} from "./utilities/middelwareFlashMessage";
+import {middlewareUserAutho} from "./utilities/middlewareUserAutho";
 
 dotenv.config();
 
@@ -17,12 +20,13 @@ app.set("views", path.join(__dirname, "views"));
 app.set("port", process.env.PORT ?? 3000);
 app.use(sessionDb);
 
-app.get("/", (req, res) => {
-  res.render("index", {
-    title: "Hello World",
-    message: "Hello World",
-  });
+app.use(middlewareFlashMessage);
+
+app.get("/", middlewareUserAutho, (req, res) => {
+  res.render("index", {});
 });
+
+app.use("/login", routerLogin());
 
 app.listen(app.get("port"), async () => {
   try {

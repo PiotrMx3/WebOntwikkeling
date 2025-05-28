@@ -1,6 +1,6 @@
 import {Collection, MongoClient} from "mongodb";
 import dotenv from "dotenv";
-import {MoviesFetch, MoviesToDb, User} from "../interfaces/interfaces";
+import {MoviesFetch, MoviesToDb, User} from "../types/types";
 import bcrypt from "bcrypt";
 
 dotenv.config();
