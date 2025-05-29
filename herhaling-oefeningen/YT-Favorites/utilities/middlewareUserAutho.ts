@@ -5,10 +5,9 @@ export function middlewareUserAutho(
   res: Response,
   next: NextFunction
 ) {
-  if (req.session.user) {
-    res.locals.user = req.session.user;
-  } else {
+  if (!req.session.user) {
     return res.redirect("/login");
   }
+  res.locals.user = req.session.user;
   next();
 }

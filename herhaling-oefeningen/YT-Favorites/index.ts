@@ -6,6 +6,7 @@ import sessionDb from "./database/sessionDb";
 import {routerLogin} from "./routers/routerLogin";
 import {middlewareFlashMessage} from "./utilities/middelwareFlashMessage";
 import {middlewareUserAutho} from "./utilities/middlewareUserAutho";
+import {getAllMovies, updateById} from "./database/querys";
 
 dotenv.config();
 
@@ -22,10 +23,26 @@ app.use(sessionDb);
 
 app.use(middlewareFlashMessage);
 
-app.get("/", middlewareUserAutho, (req, res) => {
+app.get("/", middlewareUserAutho, async (req, res) => {
   const q = typeof req.query.q === "string" ? req.query.q : "";
-  // const data = await call db to to
-  res.render("index", {});
+  const field = typeof req.query.field === "string" ? req.query.field : "";
+  const direction =
+    typeof req.query.direction === "string" ? req.query.direction : "";
+
+  const movies = await getAllMovies(q, field, direction);
+
+  res.render("index", {
+    movies: movies,
+    q: q,
+    field: field,
+    direction: direction,
+  });
+});
+
+app.post("/update/:id", async (req, res) => {
+  const id = typeof req.params.id === "string" ? req.params.id : "";
+  await updateById(id);
+  res.redirect("/");
 });
 
 app.use("/login", routerLogin());

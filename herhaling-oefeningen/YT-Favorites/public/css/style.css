@@ -111,3 +111,16 @@ td {
   padding: 0.4rem;
   text-align: left;
 }
+
+table th {
+  background-color: rgb(214, 210, 210);
+}
+
+span.arrows {
+  font-size: 1rem;
+}
+
+a.links {
+  color: black;
+  text-decoration: none;
+}

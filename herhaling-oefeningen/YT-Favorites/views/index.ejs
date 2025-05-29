@@ -1,44 +1,85 @@
 <%- include('./partials/header') %>
     <%- include('./partials/navbar') %>
         <main>
-            <h1 id="home-title">Video List</h1>
-            <form id="form-q" action="/" method="get">
-                <label for="field-q">Search:</label>
-                <input type="text" name="q" id="field-q">
-                <button class="button-search" type="submit">Search</button>
-            </form>
-            <a class="button button-create" href="/create">Create New Video</a>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>URL</th>
-                        <th>Description</th>
-                        <th>Rating</th>
-                        <th>Favorite</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Title</td>
-                        <td>Url</td>
-                        <td>Description</td>
-                        <td>Rating</td>
-                        <td>
-                            <form><button type="submit" formmethod="POST" formaction="#">
-                                    <%= user.favorite==='1' ? 'Favorite' : 'Not Fav' %>
-                                </button></form>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-
             <% if (flashMessage) { %>
                 <h2 class=" <%= flashMessage.type %>">
                     <%= flashMessage.message %>
                 </h2>
                 <% } %>
+                    <h1 id="home-title">Video List</h1>
+                    <form id="form-q" action="/" method="get">
+                        <label for="field-q">Search:</label>
+                        <input type="text" name="q" id="field-q" value="<%= q %>">
+                        <input type="hidden" name="field" value="<%= field %>">
+                        <input type="hidden" name="direction" value="<%= direction %>">
+
+                        <button class="button-search" type="submit">Search</button>
+                    </form>
+                    <a class="button button-create" href="/create">Create New Video</a>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><a class="links"
+                                        href="/?q=<%= q %>&field=title&direction=<%=direction=== 'asc' ? 'desc' : 'asc' %>">Title
+                                        <span class="arrows">
+                                            <%= field==='title' ? (direction==='asc' ? '↑' : ' ↓' ) : '' %>
+                                        </span>
+                                    </a>
+                                </th>
+                                <th>URL</th>
+                                <th><a class="links"
+                                        href="/?q=<%= q %>&field=description&direction=<%=direction=== 'asc' ? 'desc' : 'asc' %>">Description
+                                        <span class="arrows">
+                                            <%= field==='description' ? (direction==='asc' ? '↑' : ' ↓' ) : '' %>
+                                        </span>
+                                    </a>
+                                </th>
+                                <th><a class="links"
+                                        href="/?q=<%= q %>&field=rating&direction=<%=direction=== 'asc' ? 'desc' : 'asc' %>">Rating
+                                        <span class="arrows">
+                                            <%= field==='rating' ? (direction==='asc' ? '↑' : ' ↓' ) : '' %>
+                                        </span>
+                                    </a>
+                                </th>
+                                <th>Favorite</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <% movies.forEach(movie=> { %>
+
+                                <tr>
+                                    <td>
+                                        <%= movie.title %>
+                                    </td>
+                                    <td>
+                                        <a href="<%= movie.url%>" target="_blank">
+                                            <%= movie.url%>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= movie.description %>
+                                    </td>
+                                    <td>
+                                        <%= movie.rating %>
+                                    </td>
+                                    <td>
+                                        <form><button type="submit" formmethod="POST"
+                                                formaction="update/<%= movie._id %>">
+                                                <%= movie.fav ? 'Favorite' : 'Not Fav' %>
+
+                                            </button></form>
+                                    </td>
+                                </tr>
+
+
+
+                                <% }) %>
+
+                        </tbody>
+                    </table>
+
+
         </main>
         <%- include('./partials/footer') %>
