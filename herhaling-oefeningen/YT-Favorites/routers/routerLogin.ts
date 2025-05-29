@@ -30,7 +30,6 @@ export function routerLogin() {
   });
 
   router.post("/logout", async (req, res) => {
-    console.log("hier logout ???");
     req.session.destroy(() => {
       res.redirect("/login");
     });

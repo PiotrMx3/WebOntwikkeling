@@ -29,3 +29,85 @@ body {
   height: 2rem;
   margin-bottom: 2rem;
 }
+
+header ul {
+  display: flex;
+  list-style: none;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  padding: 1rem;
+  background-color: black;
+}
+
+header ul li a,
+header ul li form {
+  color: white;
+  padding: 1rem 0;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+header ul li a:hover,
+header ul li:hover {
+  cursor: pointer;
+  background-color: grey;
+}
+
+header ul li:last-child {
+  margin-left: auto;
+}
+
+header ul li form button {
+  all: unset;
+  cursor: pointer;
+}
+
+#home-title {
+  font-size: 3rem;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.button {
+  padding: 0.75rem;
+  background-color: green;
+  color: white;
+  display: block;
+  width: fit-content;
+  text-decoration: none;
+  font-size: medium;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.button-create {
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: 0.5rem;
+}
+
+#form-q {
+  margin-left: 0.5rem;
+  margin-right: auto;
+}
+
+.button-search {
+  cursor: pointer;
+}
+
+table {
+  margin-top: 2rem;
+  /* table-layout: fixed;
+  default auto */
+  border-collapse: collapse;
+  border: 3px solid purple;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 0.4rem;
+  text-align: left;
+}

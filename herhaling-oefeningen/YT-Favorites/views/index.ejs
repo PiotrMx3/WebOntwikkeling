@@ -1,12 +1,44 @@
 <%- include('./partials/header') %>
-
-    <% if (flashMessage) { %>
-        <h1 class=" <%= flashMessage.type %>">
-            <%= flashMessage.message %>
-        </h1>
-        <% } %>
-
-            <form action="/login/logout" method="post">
-                <button type="submit">LOGOUT</button>
+    <%- include('./partials/navbar') %>
+        <main>
+            <h1 id="home-title">Video List</h1>
+            <form id="form-q" action="/" method="get">
+                <label for="field-q">Search:</label>
+                <input type="text" name="q" id="field-q">
+                <button class="button-search" type="submit">Search</button>
             </form>
-            <%- include('./partials/footer') %>
+            <a class="button button-create" href="/create">Create New Video</a>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>URL</th>
+                        <th>Description</th>
+                        <th>Rating</th>
+                        <th>Favorite</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Title</td>
+                        <td>Url</td>
+                        <td>Description</td>
+                        <td>Rating</td>
+                        <td>
+                            <form><button type="submit" formmethod="POST" formaction="#">
+                                    <%= user.favorite==='1' ? 'Favorite' : 'Not Fav' %>
+                                </button></form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <% if (flashMessage) { %>
+                <h2 class=" <%= flashMessage.type %>">
+                    <%= flashMessage.message %>
+                </h2>
+                <% } %>
+        </main>
+        <%- include('./partials/footer') %>

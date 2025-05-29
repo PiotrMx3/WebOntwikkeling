@@ -23,6 +23,8 @@ app.use(sessionDb);
 app.use(middlewareFlashMessage);
 
 app.get("/", middlewareUserAutho, (req, res) => {
+  const q = typeof req.query.q === "string" ? req.query.q : "";
+  // const data = await call db to to
   res.render("index", {});
 });
 

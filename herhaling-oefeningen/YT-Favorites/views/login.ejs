@@ -1,22 +1,22 @@
 <%- include('./partials/header') %>
+    <main>
+        <section id="container-login-form">
 
-    <section id="container-login-form">
+            <% if (flashMessage) { %>
+                <h1 class=" <%= flashMessage.type %>">
+                    <%= flashMessage.message %>
+                </h1>
+                <% } %>
+                    <form action="/login" method="post">
+                        <label for="field-email">E-mail</label>
+                        <input type="email" name="email" id="field-email">
+                        <label for="field-password">Password</label>
+                        <input type="password" name="password" id="field-password">
+                        <button type="submit">Log in</button>
+                    </form>
 
-        <% if (flashMessage) { %>
-            <h1 class=" <%= flashMessage.type %>">
-                <%= flashMessage.message %>
-            </h1>
-            <% } %>
-                <form action="/login" method="post">
-                    <label for="field-email">E-mail</label>
-                    <input type="email" name="email" id="field-email">
-                    <label for="field-password">Password</label>
-                    <input type="password" name="password" id="field-password">
-                    <button type="submit">Log in</button>
-                </form>
+        </section>
 
-    </section>
-
-
+    </main>
 
     <%- include('./partials/footer') %>
