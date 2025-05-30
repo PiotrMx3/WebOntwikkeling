@@ -65,11 +65,16 @@
                                         <%= movie.rating %>
                                     </td>
                                     <td>
-                                        <form><button type="submit" formmethod="POST"
-                                                formaction="update/<%= movie._id %>">
-                                                <%= movie.fav ? 'Favorite' : 'Not Fav' %>
 
-                                            </button></form>
+                                        <form
+                                            action="update/<%= movie._id %>/?q=<%= q %>&field=<%= field %>&direction=<%= direction %>"
+                                            method="POST">
+                                            <button type="submit">
+                                                <%= movie.fav ? 'Favorite' : 'Not Fav' %>
+                                            </button>
+                                        </form>
+
+
                                     </td>
                                 </tr>
 

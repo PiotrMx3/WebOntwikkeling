@@ -17,6 +17,7 @@ export interface MoviesFetch {
 }
 
 export interface MoviesToDb {
+  _id?: ObjectId;
   title: string;
   url: string;
   description: string;
@@ -27,4 +28,12 @@ export interface MoviesToDb {
 export interface Flash {
   type: "error" | "succes";
   message: string;
+}
+
+export interface RawMoviesToDb {
+  title: string;
+  url: string;
+  description: string;
+  rating: string;
+  fav: string;
 }
