@@ -1,0 +1,124 @@
+                                <div>
+                                    <div class="bg-white rounded-lg shadow-md mt-4">
+
+                                        <img alt="Bar image" class="w-full h-64 object-cover rounded-t-lg"
+                                            src="https://raw.githubusercontent.com/slimmii/mock_api/main/bars/dagobah-swamp-pub_3.jpeg">
+
+                                        <div class="flex p-4"><img alt="Beer image"
+                                                class="w-20 h-20 rounded-full resize-fit"
+                                                src="https://raw.githubusercontent.com/slimmii/mock_api/main/beers/jedi-juice.jpeg">
+                                            <div class="ml-4">
+                                                <p class="text-gray-600"><b>Jon Doe</b> checked in at <span
+                                                        class="font-semibold">Dagobah Swamp Pub</span></p>
+                                                <p class="text-gray-600">Drinking: <span class="font-semibold">Jedi
+                                                        Juice</span>
+                                                </p>
+                                                <p class="text-gray-700">Comment: Hey I really liked it!!</p>
+                                                <p class="text-gray-600">Date: 4/9/2023, 18:44:33</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="bg-white rounded-lg shadow-md mt-4">
+
+                                        <img alt="Bar image" class="w-full h-64 object-cover rounded-t-lg"
+                                            src="https://raw.githubusercontent.com/slimmii/mock_api/main/bars/dagobah-swamp-pub_1.jpeg">
+
+                                        <div class="flex p-4"><img alt="Beer image"
+                                                class="w-20 h-20 rounded-full resize-fit"
+                                                src="https://raw.githubusercontent.com/slimmii/mock_api/main/beers/jedi-juice.jpeg">
+                                            <div class="ml-4">
+                                                <p class="text-gray-600"><b>Jon Doe</b> checked in at <span
+                                                        class="font-semibold">Dagobah Swamp Pub</span></p>
+                                                <p class="text-gray-600">Drinking: <span class="font-semibold">Jedi
+                                                        Juice</span>
+                                                </p>
+                                                <p class="text-gray-700">Comment: It was moist there!</p>
+                                                <p class="text-gray-600">Date: 4/9/2023, 18:44:21</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="bg-white rounded-lg shadow-md mt-4">
+
+                                        <img alt="Bar image" class="w-full h-64 object-cover rounded-t-lg"
+                                            src="https://raw.githubusercontent.com/slimmii/mock_api/main/bars/mos-eisley-cantina_1.jpeg">
+
+                                        <div class="flex p-4"><img alt="Beer image"
+                                                class="w-20 h-20 rounded-full resize-fit"
+                                                src="https://raw.githubusercontent.com/slimmii/mock_api/main/beers/wookiee-brew.jpeg">
+                                            <div class="ml-4">
+                                                <p class="text-gray-600"><b>Princess Amidala</b> checked in at <span
+                                                        class="font-semibold">Mos Eisley Cantina</span></p>
+                                                <p class="text-gray-600">Drinking: <span class="font-semibold">Wookiee
+                                                        Brew</span>
+                                                </p>
+                                                <p class="text-gray-700">Comment: Explored the diverse drinks at Mos
+                                                    Eisley
+                                                    Cantina. As elegant as my wardrobe! 👑🍸</p>
+                                                <p class="text-gray-600">Date: 16/9/2022, 22:45:00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="bg-white rounded-lg shadow-md mt-4">
+
+                                        <img alt="Bar image" class="w-full h-64 object-cover rounded-t-lg"
+                                            src="https://raw.githubusercontent.com/slimmii/mock_api/main/bars/coruscant-club-1313_0.jpeg">
+
+                                        <div class="flex p-4"><img alt="Beer image"
+                                                class="w-20 h-20 rounded-full resize-fit"
+                                                src="https://raw.githubusercontent.com/slimmii/mock_api/main/beers/alderaan-amber.jpeg">
+                                            <div class="ml-4">
+                                                <p class="text-gray-600"><b>Luke Skywalker</b> checked in at <span
+                                                        class="font-semibold">Coruscant Club 1313</span></p>
+                                                <p class="text-gray-600">Drinking: <span class="font-semibold">Alderaan
+                                                        Amber
+                                                        Ale</span>
+                                                </p>
+                                                <p class="text-gray-700">Comment: Couldn&#39;t resist the Alderaan Amber
+                                                    Ale at
+                                                    Coruscant Club 1313 again. A Jedi&#39;s choice! 🍻</p>
+                                                <p class="text-gray-600">Date: 15/9/2022, 20:30:00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="bg-white rounded-lg shadow-md mt-4">
+
+                                        <img alt="Bar image" class="w-full h-64 object-cover rounded-t-lg"
+                                            src="https://raw.githubusercontent.com/slimmii/mock_api/main/bars/endor-ewok-pub_0.jpeg">
+
+                                        <div class="flex p-4"><img alt="Beer image"
+                                                class="w-20 h-20 rounded-full resize-fit"
+                                                src="https://raw.githubusercontent.com/slimmii/mock_api/main/beers/ewok-elixir.jpeg">
+                                            <div class="ml-4">
+                                                <p class="text-gray-600"><b>Darth Vader</b> checked in at <span
+                                                        class="font-semibold">Endor Ewok Pub</span></p>
+                                                <p class="text-gray-600">Drinking: <span class="font-semibold">Ewok
+                                                        Elixir</span>
+                                                </p>
+                                                <p class="text-gray-700">Comment: Relaxed with an Ewok Elixir at Endor
+                                                    Ewok Pub.
+                                                    Even the Dark Side enjoys a taste of the forest moon! 🌲🍹</p>
+                                                <p class="text-gray-600">Date: 14/9/2022, 18:15:00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+{
+
+barId: '8',
+beerId: '1',
+comment: 'Siemanko moj zajebisty towar'
+
+}

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars Bar Reviews</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+
+    <% if (message) { %>
+        <p class="<%= message.type %>">
+            <%= message.message %>
+        </p>
+        <%}%>
+            <div id="container">
+                <nav class="bg-blue-500 p-4">
+                    <div class="container mx-auto flex justify-between items-center">
+                        <ul class="flex gap-10">
+                            <li><a class="text-white hover:text-blue-200 font-semibold" href="/">Home</a></li>
+                            <li><a class="text-white hover:text-blue-200 font-semibold" href="/beers">Beers</a></li>
+                            <li><a class="text-white hover:text-blue-200 font-semibold" href="/bars">Bars</a></li>
+                        </ul>
+                        <div class="relative">
+                            <button
+                                class="cursor-pointer w-10 h-10 rounded-full bg-white flex items-center justify-center"
+                                popovertarget="profile-popover" popovertargetaction="toggle">
+                                <span class="text-blue-500 font-bold">S</span>
+                            </button>
+                            <div id="profile-popover"
+                                class="popover hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+                                <ul>
+                                    <li><a class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+                                            href="/profile">
+                                            <%= user.fullname %>
+                                        </a></li>
+                                    <li><a class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+                                            href="/login/logout">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <script>
+                    document.addEventListener('click', (event) => {
+                        const targetButton = event.target.closest('[popovertarget]');
+                        const popoverId = targetButton?.getAttribute('popovertarget');
+                        if (popoverId) {
+                            const popover = document.getElementById(popoverId);
+                            if (popover) {
+                                popover.classList.toggle('hidden');
+                            }
+                        } else {
+                            document.querySelectorAll('.popover').forEach(popover => popover.classList.add('hidden'));
+                        }
+                    });
+                </script>
+                <div>
+                    <div class="container mx-auto p-4 flex flex-1">
+                        <div class="w-2/3 mr-4">
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <h1 class="text-2xl font-semibold mb-4">Check-in at the Bar</h1>
+                                <form method="post" action="/checkin">
+                                    <div class="flex flex-direction-row gap-4">
+                                        <div class="mb-4 flex-1"><label for="barId"
+                                                class="block text-gray-700 font-semibold">Bar
+                                                Name</label><select id="barId" name="barId"
+                                                class="w-full p-2 border border-gray-300 rounded">
+                                                <option hidden="" value="">-- Select a bar -- </option>
+
+                                                <option value="8">Alderaan Wine Bar</option>
+
+                                                <option value="2">Cloud City Lounge</option>
+
+                                                <option value="5">Coruscant Club 1313</option>
+
+                                                <option value="10">Dagobah Swamp Pub</option>
+
+                                                <option value="4">Endor Ewok Pub</option>
+
+                                                <option value="3">Jabba&#39;s Palace Bar</option>
+
+                                                <option value="7">Kashyyyk Treetop Tavern</option>
+
+                                                <option value="1">Mos Eisley Cantina</option>
+
+                                                <option value="6">Naboo Waterfront Bistro</option>
+
+                                                <option value="9">Tusken Raider Saloon</option>
+
+                                            </select></div>
+                                        <div class="mb-4 flex-1"><label for="beerId"
+                                                class="block text-gray-700 font-semibold">Beer
+                                                Name</label><select id="beerId" name="beerId"
+                                                class="w-full p-2 border border-gray-300 rounded">
+                                                <option hidden="" value="" selected="">-- Select a beer -- </option>
+
+                                                <option value="1">Wookiee Brew</option>
+
+                                                <option value="2">Tatooine Sunset Lager</option>
+
+                                                <option value="3">Sith Stout</option>
+
+                                                <option value="4">Ewok Elixir</option>
+
+                                                <option value="5">Alderaan Amber Ale</option>
+
+                                                <option value="6">Hutt Hops IPA</option>
+
+                                                <option value="7">Droid&#39;s Delight Pilsner</option>
+
+                                                <option value="8">Womp Rat Wheat Beer</option>
+
+                                                <option value="9">Rebel Red Ale</option>
+
+                                                <option value="10">Force Field Porter</option>
+
+                                                <option value="11">Yoda&#39;s Wisdom Saison</option>
+
+                                                <option value="12">Eternal Empire ESB</option>
+
+                                                <option value="13">Alderaanian Cider</option>
+
+                                                <option value="14">Dagobah Dark Lager</option>
+
+                                                <option value="15">Mandalorian Malt Whiskey</option>
+
+                                                <option value="16">Jedi Juice</option>
+
+                                                <option value="17">Sarlacc Sour</option>
+
+                                                <option value="18">Hoth Hefeweizen</option>
+
+                                                <option value="19">Alderaan Stout</option>
+
+                                                <option value="20">Chewbacca&#39;s Chewy Caramel Ale</option>
+
+                                            </select></div>
+                                    </div>
+                                    <div class="mb-4"><label for="comment"
+                                            class="block text-gray-700 font-semibold">Comment</label><textarea
+                                            id="comment" name="comment"
+                                            class="w-full p-2 border border-gray-300 rounded"></textarea></div>
+                                    <button
+                                        class="text-white bg-blue-500 hover:bg-blue-600 disabled:bg-gray-100 disabled:text-black font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-700">Check-in</button>
+                                </form>
+                            </div>
+                            <div class="mt-8">
+
+                                <h2 class="text-xl font-semibold mb-4">Recent Check-ins</h2>
+
+
+                                <% checkin.forEach(el=> { %>
+                                    <div>
+                                        <div class="bg-white rounded-lg shadow-md mt-4">
+
+                                            <img alt="Bar image" class="w-full h-64 object-cover rounded-t-lg"
+                                                src="<%= el.image%>">
+
+                                            <div class="flex p-4"><img alt="Beer image"
+                                                    class="w-20 h-20 rounded-full resize-fit" src="<%= el.beer.logo %>">
+                                                <div class="ml-4">
+                                                    <p class="text-gray-600"><b>
+                                                            <%= el.name %>
+                                                        </b> checked in at <span class="font-semibold">
+                                                            <%= el.bar.name %>
+                                                        </span></p>
+                                                    <p class="text-gray-600">Drinking: <span class="font-semibold">
+                                                            <%= el.beer.name %>
+                                                        </span>
+                                                    </p>
+                                                    <p class="text-gray-700">Comment: <%= el.comment %>
+                                                    </p>
+                                                    <p class="text-gray-600">Date: <%= formatDateTime(el.date) %>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+
+                            </div>
+                        </div>
+                        <div class="w-1/3">
+                            <div class="bg-white gap-4 rounded-lg shadow-md mb-4 flex flex-col p-4">
+                                <h2 class="text-xl font-semibold mb-4">Top Beers</h2>
+
+                                <% topBeers.forEach(beer=> { %>
+
+                                    <a href="/beers/16">
+                                        <div class="flex flex-row gap-4"><img class="w-32 h-32 rounded-lg"
+                                                src="<%= beer.logo %>">
+                                            <div>
+                                                <p class="text-lg font-semibold">
+                                                    <%= beer.name %>
+                                                </p>
+                                                <p class="text-sm">
+                                                    <%= beer.description %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <% }) %>
+
+                            </div>
+                            <div class="bg-white gap-4 rounded-lg shadow-md mb-4 flex flex-col p-4">
+                                <h2 class="text-xl font-semibold mb-4">Top Bars</h2>
+
+
+                                <% topBars.forEach(bar=> { %>
+
+                                    <a href="/bars/<%=bar.id  %>">
+                                        <div class="flex flex-row gap-4"><img class="w-32 h-32 rounded-lg"
+                                                src="<%= bar.images[1] %>">
+                                            <div>
+                                                <p class="text-lg font-semibold">
+                                                    <%= bar.name %>
+                                                </p>
+                                                <p class="text-sm">
+                                                    <%= bar.description %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <% }) %>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</body>
+
+</html>
