@@ -23,8 +23,8 @@ app.set("port", process.env.PORT ?? 3000);
 app.use(sessionDb);
 app.use(middlewareFlashMessage);
 
-app.use("/login", routerLogin());
 app.use("/", routerHome());
+app.use("/login", routerLogin());
 
 app.listen(app.get("port"), async () => {
   try {
