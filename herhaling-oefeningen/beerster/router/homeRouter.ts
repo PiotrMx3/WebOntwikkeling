@@ -2,7 +2,6 @@ import express from "express";
 import {Beer, Checkin} from "../types";
 import {
   createCheckin,
-  getBeerById,
   getBeers,
   getCheckins,
   getTopThreeBars,
@@ -72,33 +71,6 @@ export default function homeRouter() {
     } catch (error) {
       console.error(error);
       res.redirect("/");
-    }
-  });
-
-  router.get("/beers", async (req, res) => {
-    const beers = await getBeers();
-
-    res.render("beers", {
-      beers: beers,
-    });
-  });
-
-  router.get("/beers/:id", async (req, res) => {
-    const id =
-      typeof req.params.id === "string" ? parseInt(req.params.id) : undefined;
-
-    try {
-      if (!id) throw new Error("Beer Id param is empty");
-      const beerById = await getBeerById(id);
-
-      if (!beerById) throw new Error("Beer by id not found");
-
-      res.render("beer", {
-        beer: beerById,
-      });
-    } catch (error) {
-      console.error(error);
-      res.redirect("/beers");
     }
   });
 

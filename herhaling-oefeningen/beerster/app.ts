@@ -8,6 +8,9 @@ import session from "./session";
 import loginRouter from "./router/loginRouter";
 import homeRouter from "./router/homeRouter";
 import {loginMiddleware} from "./middleware/loginMiddleware";
+import {beersRouter} from "./router/beersRouter";
+import {barsRouter} from "./router/barsRouter";
+import profileRouter from "./router/profileRouter";
 
 dotenv.config();
 
@@ -28,5 +31,8 @@ app.set("port", process.env.PORT ?? 3000);
 app.use("/login", loginRouter());
 
 app.use("/", loginMiddleware, homeRouter());
+app.use("/beers", loginMiddleware, beersRouter());
+app.use("/bars", loginMiddleware, barsRouter());
+app.use("/profile", loginMiddleware, profileRouter());
 
 export default app;

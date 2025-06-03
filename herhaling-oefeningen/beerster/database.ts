@@ -2,7 +2,6 @@ import dotenv from "dotenv";
 import {Collection, MongoClient, Sort} from "mongodb";
 import {Bar, Beer, Checkin, CheckinForm, User} from "./types";
 import bcrypt from "bcrypt";
-import {cp} from "fs";
 import {randomNumber} from "./utilities";
 dotenv.config();
 
@@ -149,9 +148,24 @@ export async function getCheckins(
 
 export async function getCheckinsByBar(barName: string) {}
 
-export async function getCheckinsByFullName(fullname: string) {}
+export async function getCheckinsByFullName(fullname: string) {
+  const result = await collectionCheckIn
+    .find<Checkin>({name: new RegExp(fullname, "i")})
+    .sort({date: -1})
+    .toArray();
+  console.log(result.length);
+  return result;
+}
 
-export async function getCheckinsByBeer(beerName: string) {}
+export async function getCheckinsByBeer(beerName: string) {
+  const result = await collectionCheckIn
+    .find<Checkin>({
+      ["beer.name"]: new RegExp(beerName, "i"),
+    })
+    .sort({date: -1})
+    .toArray();
+  return result;
+}
 
 export async function getBars(sort: Sort = {name: 1}) {
   const result = await collectionBars.find({}).sort(sort).toArray();
