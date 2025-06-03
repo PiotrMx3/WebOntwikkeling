@@ -10,9 +10,9 @@ export default function profileRouter() {
     try {
       if (!fullName) throw new Error("Error locals not defined!");
 
-      const chekinByFullname = await getCheckinsByFullName(fullName);
+      const checkinByFullname = await getCheckinsByFullName(fullName);
       res.render("profile", {
-        checkByUser: chekinByFullname,
+        checkByUser: checkinByFullname,
       });
     } catch (error) {
       console.log(error);
